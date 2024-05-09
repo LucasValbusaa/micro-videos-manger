@@ -7,7 +7,8 @@ describe('Category Unit Tests', () => {
         name: 'movie',
       })
 
-      expect(category.categoryId).toBeInstanceOf(CategoryId)
+      expect(category.entityId).toBeInstanceOf(CategoryId)
+      expect(category.categoryId).toBeDefined()
       expect(category.name).toBe('movie')
       expect(category.description).toBeNull()
       expect(category.activate).toBeTruthy()
@@ -23,7 +24,8 @@ describe('Category Unit Tests', () => {
         createdAt,
       })
 
-      expect(category.categoryId).toBeInstanceOf(CategoryId)
+      expect(category.entityId).toBeInstanceOf(CategoryId)
+      expect(category.categoryId).toBeDefined()
       expect(category.name).toBe('movie')
       expect(category.description).toBe('some description')
       expect(category.isActive).toBeFalsy()
@@ -37,7 +39,8 @@ describe('Category Unit Tests', () => {
         name: 'movie',
       })
 
-      expect(category.categoryId).toBeInstanceOf(CategoryId)
+      expect(category.entityId).toBeInstanceOf(CategoryId)
+      expect(category.categoryId).toBeDefined()
       expect(category.name).toBe('movie')
       expect(category.description).toBeNull()
       expect(category.activate).toBeTruthy()
@@ -53,7 +56,8 @@ describe('Category Unit Tests', () => {
         createdAt,
       })
 
-      expect(category.categoryId).toBeInstanceOf(CategoryId)
+      expect(category.entityId).toBeInstanceOf(CategoryId)
+      expect(category.categoryId).toBeDefined()
       expect(category.name).toBe('movie')
       expect(category.description).toBe('some description')
       expect(category.isActive).toBeFalsy()
@@ -76,9 +80,9 @@ describe('Category Unit Tests', () => {
         categoryId as any,
       )
 
-      expect(category.categoryId).toBeInstanceOf(CategoryId)
+      expect(category.entityId).toBeInstanceOf(CategoryId)
       if (categoryId instanceof CategoryId) {
-        expect(category.categoryId).toBe(categoryId)
+        expect(category.entityId).toBe(categoryId)
       }
     })
   })
