@@ -1,0 +1,114 @@
+{
+  "workbench.colorTheme": "Dracula",
+  "workbench.iconTheme": "symbols",
+  "symbols.files.associations": {
+    "*.e2e-spec.ts": "ts-test",
+  },
+  "symbols.folders.associations": {
+    "domain": "folder-models",
+    "@shared": "folder-shared",
+    "__tests__": "folder-orange-outline",
+    "test": "folder-orange-outline"
+  },
+  "cSpell.userWords": [
+    "antd",
+    "catalogo",
+    "chargeback",
+    "CHARGEBACK",
+    "chatbox",
+    "cnpj",
+    "digitable",
+    "Fullname",
+    "hmtl",
+    "hookform",
+    "iugu",
+    "Iugu",
+    "IUGU",
+    "leadbroker",
+    "Marguerita",
+    "nestjs",
+    "oneofs",
+    "pipefy",
+    "prestart",
+    "proto",
+    "protobuf",
+    "protoc",
+    "qrcode",
+    "Sequelize",
+    "tailwindcss",
+    "Tbuild",
+    "temporalio",
+    "testid",
+    "transação",
+    "Umzug",
+    "uuidv"
+  ],
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.formatOnPaste": false, 
+  "editor.formatOnType": false, 
+  "editor.formatOnSave": true, 
+  "eslint.format.enable": true, 
+  "editor.formatOnSaveMode": "file", 
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+    
+  "tailwindCSS.suggestions": true,
+  "tailwindCSS.experimental.classRegex": [
+    ["tv\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "editor.inlayHints.padding": true,
+  "files.eol": "\n",
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "editor.inlayHints.enabled": "off",
+  "terminal.integrated.automationProfile.linux": {},
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    },
+    "Ubuntu-20.04 (WSL)": {
+      "path": "C:\\WINDOWS\\System32\\wsl.exe",
+      "args": ["-d", "Ubuntu-20.04"]
+    },
+    "Ubuntu (WSL)": {
+      "path": "C:\\WINDOWS\\System32\\wsl.exe",
+      "args": ["-d", "Ubuntu"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "symbols.hidesExplorerArrows": false,
+  "workbench.productIconTheme": "fluent-icons",
+  "editor.defaultFoldingRangeProvider": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "cSpell.language": "en,pt-BR",
+  "git.autofetch": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  }
+}
