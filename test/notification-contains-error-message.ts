@@ -1,5 +1,5 @@
-import { ValueObject } from '@shared/domain/value-object'
 import { Notification } from '@/@shared/domain/validators/notification'
+import { ValueObject } from '@/@shared/domain/value-objects/value-object'
 import { expect } from 'vitest'
 
 expect.extend({
