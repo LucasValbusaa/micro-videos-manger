@@ -1,10 +1,10 @@
-import { generateErrorMessage } from '@/@shared/errors/exceptions/generate-error-message'
-import { ValueObject } from '../value-object'
+import { ValueObject } from './value-object'
 import { v4 as uuidv4, validate as uuidValidate } from 'uuid'
 import {
-  defaultDictionaryErrors,
-  DefaultDictionaryErrors,
-} from '@/@shared/errors/dictionary/default-dictionary-errors'
+  defaultErrors,
+  DefaultErrorsCode,
+} from '@/@shared/errors/dictionary/default-errors'
+import { generateErrorMessage } from '@/@shared/errors/handles/generate-error-message'
 
 export class Uuid extends ValueObject {
   readonly id: string
@@ -18,10 +18,7 @@ export class Uuid extends ValueObject {
     const isValid = uuidValidate(this.id)
 
     if (!isValid) {
-      generateErrorMessage(
-        DefaultDictionaryErrors.INVALID_UUID,
-        defaultDictionaryErrors,
-      )
+      generateErrorMessage(DefaultErrorsCode.INVALID_UUID, defaultErrors)
     }
   }
 }
