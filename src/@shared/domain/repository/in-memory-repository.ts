@@ -1,11 +1,13 @@
-import { generateErrorMessage } from '@/@shared/errors/exceptions/generate-error-message'
+import { generateErrorMessage } from '@/@shared/errors/handles/generate-error-message'
 import { Entity } from '../entity'
-import { ValueObject } from '../value-object'
-import { IRepository } from './repository-interface'
+import { ValueObject } from '../value-objects/value-object'
+import { IRepository, ISearchableRepository } from './repository-interface'
 import {
-  DefaultDatabaseErrorCode,
-  databaseDictionaryErrors,
-} from '@/@shared/errors/dictionary/default-datatabase-errors'
+  DefaultDatabaseErrorsCode,
+  defaultDatabaseErrors,
+} from '@/@shared/errors/dictionary/default-database-errors'
+import { SearchParams, SortDirection } from './search-params'
+import { SearchResult } from './search-result'
 
 export abstract class InMemoryRepository<
   E extends Entity,
@@ -29,8 +31,8 @@ export abstract class InMemoryRepository<
 
     if (indexFound === -1) {
       generateErrorMessage(
-        DefaultDatabaseErrorCode.DB_NOT_FOUND_SCHEMA,
-        databaseDictionaryErrors,
+        DefaultDatabaseErrorsCode.DB_NOT_FOUND_SCHEMA,
+        defaultDatabaseErrors,
         {},
         'in-memory-repository',
       )
@@ -46,8 +48,8 @@ export abstract class InMemoryRepository<
 
     if (indexFound === -1) {
       generateErrorMessage(
-        DefaultDatabaseErrorCode.DB_NOT_FOUND_SCHEMA,
-        databaseDictionaryErrors,
+        DefaultDatabaseErrorsCode.DB_NOT_FOUND_SCHEMA,
+        defaultDatabaseErrors,
         {},
         'in-memory-repository',
       )
@@ -66,4 +68,75 @@ export abstract class InMemoryRepository<
   }
 
   abstract getEntity(): new (...args: any[]) => E
+}
+
+export abstract class InMemorySearchableRepository<
+    E extends Entity,
+    EntityId extends ValueObject,
+    Filter = string,
+  >
+  extends InMemoryRepository<E, EntityId>
+  implements ISearchableRepository<E, EntityId, Filter>
+{
+  sortableFields: string[] = []
+  async search(props: SearchParams<Filter>): Promise<SearchResult<Entity>> {
+    const itemsFiltered = await this.applyFilter(this.items, props.filter)
+    const itemsSorted = await this.applySort(
+      itemsFiltered,
+      props.sort,
+      props.sortDir,
+    )
+    const itemsPaginated = await this.applyPaginate(
+      itemsSorted,
+      props.page,
+      props.perPage,
+    )
+
+    return new SearchResult({
+      items: itemsPaginated,
+      total: itemsFiltered.length,
+      currentPage: props.page,
+      perPage: props.perPage,
+    })
+  }
+
+  protected abstract applyFilter(
+    items: E[],
+    filter: Filter | null,
+  ): Promise<E[]>
+
+  protected async applyPaginate(
+    items: E[],
+    page: SearchParams['page'],
+    perPage: SearchParams['perPage'],
+  ) {
+    const start = (page - 1) * perPage // 1 * 15 = 15
+    const limit = start + perPage // 15 + 15 = 30
+    return items.slice(start, limit)
+  }
+
+  protected async applySort(
+    items: E[],
+    sort: string | null,
+    sortDir: SortDirection | null,
+    customGetter?: (sort: string, item: E) => any,
+  ) {
+    if (!sort || !this.sortableFields.includes(sort)) {
+      return items
+    }
+
+    return [...items].sort((a, b) => {
+      const aValue = customGetter ? customGetter(sort, a) : a[sort]
+      const bValue = customGetter ? customGetter(sort, b) : b[sort]
+      if (aValue < bValue) {
+        return sortDir === 'asc' ? -1 : 1
+      }
+
+      if (aValue > bValue) {
+        return sortDir === 'asc' ? 1 : -1
+      }
+
+      return 0
+    })
+  }
 }
