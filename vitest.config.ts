@@ -7,7 +7,7 @@ export default defineConfig({
     globals: true,
     root: './',
     coverage: {
-      include: ['src/core/**'],
+      include: ['src/**'],
       reporter: ['json-summary', 'html', 'text'],
       provider: 'v8',
       all: true,

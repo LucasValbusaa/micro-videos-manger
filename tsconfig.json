@@ -7,7 +7,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "target": "es2022", 
-    "sourceMap": true,
+    "sourceMap": true, 
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true, 
@@ -20,7 +20,7 @@
     "noImplicitAny": false,
     "paths": {
       "@/*": ["src/*"],
-      "@domain/*": ["src/domain/*"],
+      "@domain/*": ["src/category/domain/*"],
       "@shared/*": ["src/@shared/*"]
     },
     "types": ["vitest/globals", "./test/vitest.d.ts"],
