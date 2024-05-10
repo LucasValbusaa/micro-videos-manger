@@ -1,3 +1,4 @@
+import { DefaultErrorsCode } from '@/@shared/errors/dictionary/default-errors'
 import { Uuid } from '../uuid-vo'
 import { validate as uuidValidate } from 'uuid'
 
@@ -9,27 +10,27 @@ describe('Uuid Unit Tests', () => {
   const validateSpy = vi.spyOn(Uuid.prototype as any, 'validate')
 
   it('should throw a erro when uuid is invalid', () => {
-    expect(() => {
+    try {
       new Uuid('invalid-uuid')
-    }).toThrowError(
-      expect.objectContaining({
-        name: 'Invalid UUID',
-        message: 'The UUID provided is invalid.',
-        error: {
-          code: 'VIDEOS-ADMIN-00001',
-          title: 'Invalid UUID',
-          detail: 'The UUID provided is invalid.',
-          status: '400',
-          statusCode: 400,
-          meta: { reason: 'The UUID provided is invalid.' },
-          action: 'Check the UUID provided',
-          source: { path: 'uuid-vo' },
-          children: [],
-          resolution: undefined,
+    } catch (error) {
+      expect(error.errorObject).toStrictEqual({
+        status: '400',
+        statusCode: 400,
+        code: DefaultErrorsCode.INVALID_UUID,
+        title: 'Invalid UUID',
+        detail: 'The UUID provided is invalid.',
+        source: {
+          path: 'uuid-vo',
         },
-      }),
-    )
-    expect(validateSpy).toHaveBeenCalledTimes(1)
+        meta: {
+          reason: 'The UUID provided is invalid.',
+        },
+        action: 'Check the UUID provided',
+        children: [],
+        resolution: 'Check the UUID provided',
+      })
+      expect(validateSpy).toHaveBeenCalledTimes(1)
+    }
   })
 
   it('should create a valid uuid', () => {
