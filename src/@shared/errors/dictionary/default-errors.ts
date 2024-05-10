@@ -1,17 +1,14 @@
 import { ErrorObject } from './dictionary-types'
 
-export enum DefaultDictionaryErrors {
+export enum DefaultErrorsCode {
   INVALID_UUID = 'VIDEOS-ADMIN-00001',
 }
 
-export const defaultDictionaryErrors: Record<
-  DefaultDictionaryErrors,
-  ErrorObject
-> = {
-  [DefaultDictionaryErrors.INVALID_UUID]: {
+export const defaultErrors: Record<DefaultErrorsCode, ErrorObject> = {
+  [DefaultErrorsCode.INVALID_UUID]: {
     status: '400',
     statusCode: 400,
-    code: DefaultDictionaryErrors.INVALID_UUID,
+    code: DefaultErrorsCode.INVALID_UUID,
     title: 'Invalid UUID',
     detail: 'The UUID provided is invalid.',
     source: {
@@ -22,5 +19,6 @@ export const defaultDictionaryErrors: Record<
     },
     action: 'Check the UUID provided',
     children: [],
+    resolution: 'Check the UUID provided',
   },
 }
