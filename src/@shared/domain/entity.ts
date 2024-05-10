@@ -1,5 +1,5 @@
 import { Notification } from './validators/notification'
-import { ValueObject } from './value-object'
+import { ValueObject } from './value-objects/value-object'
 
 export abstract class Entity {
   abstract notification: Notification
