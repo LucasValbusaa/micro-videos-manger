@@ -1,32 +1,5 @@
 import { ErrorObject } from '../dictionary/dictionary-types'
-import { AppError } from './app-error'
-
-export const handleErrorMessage = (errorData: ErrorObject) => {
-  const {
-    code,
-    detail,
-    status,
-    statusCode,
-    title,
-    action,
-    children,
-    meta,
-    source,
-    resolution,
-  } = errorData
-  throw new AppError({
-    code,
-    title,
-    detail,
-    status,
-    statusCode,
-    meta,
-    action,
-    source,
-    children,
-    resolution,
-  })
-}
+import { handleErrorMessage } from './handle-error-message'
 
 export function generateErrorMessage<T = any>(
   code: string,
